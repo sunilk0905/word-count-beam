@@ -1,5 +1,5 @@
 node {
-    stage('First Stage'){
-    sh 'mvn --version'
+    stage("First Stage"){
+    bat "mvn --version"
     }
 }
