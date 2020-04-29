@@ -1,5 +1,5 @@
 node {
-    stage "Create build output"{
-    sh "mvn --version"
+    stage('First Stage'){
+    sh 'mvn --version'
     }
 }
