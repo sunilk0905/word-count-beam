@@ -1,0 +1,14 @@
+org\apache\beam\examples\complete\game\HourlyTeamScoreTest.class
+org\apache\beam\examples\complete\game\LeaderBoardTest.class
+org\apache\beam\examples\subprocess\ExampleEchoPipelineTest$1.class
+org\apache\beam\examples\MinimalWordCountTest.class
+org\apache\beam\examples\subprocess\ExampleEchoPipelineTest.class
+org\apache\beam\examples\complete\game\StatefulTeamScoreTest$TestUser.class
+org\apache\beam\examples\complete\game\UserScoreTest.class
+org\apache\beam\examples\complete\game\StatefulTeamScoreTest.class
+org\apache\beam\examples\subprocess\ExampleEchoPipelineTest$EchoInputDoFn.class
+org\apache\beam\examples\WordCountTest.class
+org\apache\beam\examples\DebuggingWordCountTest.class
+org\apache\beam\examples\subprocess\ExampleEchoPipelineTest$2.class
+org\apache\beam\examples\complete\game\GameStatsTest.class
+org\apache\beam\examples\complete\game\LeaderBoardTest$TestUser.class
