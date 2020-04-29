@@ -66,7 +66,7 @@ public class EmployeeAttendance {
                 .apply("Counting", Combine.perKey(Sum.ofIntegers()))
                 .apply("Transform tp Pcollection", ParDo.of(new Counting()))
                 .apply("Write data to file", TextIO.write().to(options.getOutput()).withNumShards(1));
-        pipeline.run().waitUntilFinish();
+        pipeline.run();
     }
 
 }
