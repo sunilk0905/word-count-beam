@@ -9,6 +9,7 @@
       "stagingLocation": "gs://data_flow_bucket_borusu/staging",
       "tempLocation": "gs://data_flow_bucket_borusu/temp",
       "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
+      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance",
       "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
       "output": "gs://data_flow_bucket_borusu/output"
     },
@@ -18,6 +19,7 @@
       "stagingLocation": "gs://data_flow_bucket_borusu/staging",
       "tempLocation": "gs://data_flow_bucket_borusu/temp",
       "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
+      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance",
       "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
       "output": "gs://data_flow_bucket_borusu/output"
     }
