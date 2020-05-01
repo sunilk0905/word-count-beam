@@ -9,6 +9,15 @@
       "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
       "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
       "output": "gs://data_flow_bucket_borusu/output"
+    },
+    "prod": {
+      "runner": "DataflowRunner",
+      "project": "research-poc-274116",
+      "stagingLocation": "gs://data_flow_bucket_borusu/staging",
+      "tempLocation": "gs://data_flow_bucket_borusu/temp",
+      "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
+      "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
+      "output": "gs://data_flow_bucket_borusu/output"
     }
   }
 }
