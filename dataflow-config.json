@@ -1,5 +1,7 @@
 {
-  "mainClass" : "com.demo.App",
+  "groupId": "org.example",
+  "artifactId": "word-count-beam",
+  "mainClass" : "org.apache.beam.examples.EmployeeAttendance",
   "arguments": {
     "dev": {
       "runner": "DataflowRunner",
