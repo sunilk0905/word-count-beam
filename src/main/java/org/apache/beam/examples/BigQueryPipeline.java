@@ -45,11 +45,6 @@ public class BigQueryPipeline {
         String getInput();
         void setInput(String value);
 
-        @Description("Path of the output file including its filename prefix.")
-        @Validation.Required
-        String getOutput();
-        void setOutput(String value);
-
         @Description("BigQuery dataset name")
         @Default.String("beam_examples")
         String getBigQueryDataset();
@@ -106,7 +101,6 @@ public class BigQueryPipeline {
         CustomGCPOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(CustomGCPOptions.class);
         Pipeline pipeline = Pipeline.create(options);
 
-        System.out.println("Big Query table : "+options.getBigQueryTable());
         pipeline.apply("Read data from txt file", TextIO.read().from(options.getInput()))
                 .apply("Split columns", ParDo.of(new EmployeeAttendance.Employee()))
                 .apply("Counting", Combine.perKey(Sum.ofIntegers()))
@@ -123,6 +117,6 @@ public class BigQueryPipeline {
                 .withCreateDisposition(BigQueryIO.Write.CreateDisposition.CREATE_IF_NEEDED)
                 .withWriteDisposition(BigQueryIO.Write.WriteDisposition.WRITE_TRUNCATE)
                 );
-        pipeline.run().waitUntilFinish();
+        pipeline.run();
     }
 }

@@ -1,7 +1,6 @@
 {
   "groupId": "org.example",
   "artifactId": "word-count-beam",
-  "mainClass" : "org.apache.beam.examples.EmployeeAttendance",
   "arguments": {
     "dev": {
       "runner": "DataflowRunner",
@@ -9,9 +8,7 @@
       "stagingLocation": "gs://data_flow_bucket_borusu/staging",
       "tempLocation": "gs://data_flow_bucket_borusu/temp",
       "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
-      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance",
-      "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
-      "output": "gs://data_flow_bucket_borusu/output"
+      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance"
     },
     "prod": {
       "runner": "DataflowRunner",
@@ -23,5 +20,24 @@
       "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
       "output": "gs://data_flow_bucket_borusu/output"
     }
-  }
+  },
+  "templates": [
+    {
+      "templateName" : "employee-attendance",
+      "mainClass" : "org.apache.beam.examples.EmployeeAttendance",
+      "arguments" : {
+        "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
+        "output": "gs://data_flow_bucket_borusu/output"
+      }
+    },
+    {
+      "templateName": "bigquery-pipeline",
+      "mainClass": "org.apache.beam.examples.JDBCPipeline",
+      "arguments" : {
+        "driverClass": "org.postgresql.Driver",
+        "connectionString": "jdbc:postgresql:///mypostgresdb?cloudSqlInstance=research-poc-274116:us-central1:poc-database&socketFactory=com.google.cloud.sql.postgres.SocketFactory",
+        "input": "gs://data_flow_bucket_borusu/input/data_file.txt"
+      }
+    }
+  ]
 }
