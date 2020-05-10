@@ -7,18 +7,14 @@
       "project": "research-poc-274116",
       "stagingLocation": "gs://data_flow_bucket_borusu/staging",
       "tempLocation": "gs://data_flow_bucket_borusu/temp",
-      "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
-      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance"
+      "gcpTempLocation": "gs://data_flow_bucket_borusu/temp"
     },
     "prod": {
       "runner": "DataflowRunner",
       "project": "research-poc-274116",
       "stagingLocation": "gs://data_flow_bucket_borusu/staging",
       "tempLocation": "gs://data_flow_bucket_borusu/temp",
-      "gcpTempLocation": "gs://data_flow_bucket_borusu/temp",
-      "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance",
-      "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
-      "output": "gs://data_flow_bucket_borusu/output"
+      "gcpTempLocation": "gs://data_flow_bucket_borusu/temp"
     }
   },
   "templates": [
@@ -27,7 +23,8 @@
       "mainClass" : "org.apache.beam.examples.EmployeeAttendance",
       "arguments" : {
         "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
-        "output": "gs://data_flow_bucket_borusu/output"
+        "output": "gs://data_flow_bucket_borusu/output",
+        "templateLocation": "gs://data_flow_bucket_borusu/templates/employee-attendance"
       }
     },
     {
@@ -36,7 +33,8 @@
       "arguments" : {
         "driverClass": "org.postgresql.Driver",
         "connectionString": "jdbc:postgresql:///mypostgresdb?cloudSqlInstance=research-poc-274116:us-central1:poc-database&socketFactory=com.google.cloud.sql.postgres.SocketFactory",
-        "input": "gs://data_flow_bucket_borusu/input/data_file.txt"
+        "input": "gs://data_flow_bucket_borusu/input/data_file.txt",
+        "templateLocation": "gs://data_flow_bucket_borusu/templates/bigquery-pipeline"
       }
     }
   ]

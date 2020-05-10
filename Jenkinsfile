@@ -6,10 +6,8 @@ def buildArguments(envArgs, templateArgs){
     templateArgs.each { key, value ->
             arguments += "--${key}=${value} "
     }
-    def workspace = pwd()
-    new File("${workspace}/target").eachFileMatch(~/.*bundled.*\.jar/) { file ->
-             arguments += "--filesToStage=" + file.getAbsolutePath()
-             }
+    def files = findFiles(glob: '**/*bundled*.jar')
+    arguments += "--filesToStage=${files[0].path}"
     return arguments;
 }
 
@@ -35,17 +33,13 @@ node {
             envArgs = envProps['arguments']['dev']
         }
         withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
-            templates.each
-            {
-                template ->
-                    {
-                        def templateArgs = template['arguments']
-                        def mainClass = template['mainClass']
-                        def templateName = template['templateName']
-                        echo "Creating template ${templateName}......"
-                        def arguments = buildArguments(envArgs, templateArgs)
-                        bat "mvn -Pdataflow-runner compile exec:java -Dexec.mainClass=${mainClass} -Dexec.args=\"${arguments}\""
-                    }
+            for(template in templates){
+                def templateArgs = template['arguments']
+                def mainClass = template['mainClass']
+                def templateName = template['templateName']
+                echo "Creating template ${templateName}......"
+                def arguments = buildArguments(envArgs, templateArgs)
+                bat "mvn -Pdataflow-runner compile exec:java -Dexec.mainClass=${mainClass} -Dexec.args=\"${arguments}\""
             }
         }
     }
